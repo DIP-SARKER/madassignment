@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:madassignment/pages/screen1.dart';
+import 'package:madassignment/pages/loginscreen.dart';
+// import 'package:madassignment/pages/screen1.dart';
 // import 'package:madassignment/pages/textview.dart';
 // import 'package:madassignment/pages/buttonpage.dart';
 // import 'package:madassignment/pages/uniquelist.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         disabledColor: Colors.grey[600],
         hintColor: const Color.fromARGB(255, 42, 15, 117),
       ),
-      home: FirstScreen(),
+      home: LoginScreen(),
     );
   }
 }
