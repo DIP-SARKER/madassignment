@@ -13,6 +13,7 @@ class UniqueListViewPage extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: Colors.yellow,
+        iconTheme: IconThemeData(color: Colors.black),
       ),
       body: ListView.builder(
         itemCount: 35,
