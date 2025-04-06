@@ -1,40 +1,60 @@
 import 'package:flutter/material.dart';
-// import 'package:madassignment/pages/profile_page.dart';
-import 'package:madassignment/pages/slidedrawer.dart';
-// import 'package:madassignment/pages/profileimage.dart';
-// import 'package:madassignment/pages/taask12.dart';
-// import 'package:madassignment/pages/task13.dart';
-// import 'package:madassignment/pages/task14.dart';
-// import 'package:madassignment/pages/task15.dart';
-// import 'package:madassignment/pages/task16.dart';
-// import 'package:madassignment/pages/appdrawer.dart';
-// import 'package:madassignment/pages/cardspaage.dart';
-// import 'package:madassignment/pages/task10.dart';
-// import 'package:madassignment/pages/imagescreen.dart';
-// import 'package:madassignment/pages/loginscreen.dart';
-// import 'package:madassignment/pages/screen1.dart';
-// import 'package:madassignment/pages/textview.dart';
-// import 'package:madassignment/pages/buttonpage.dart';
-// import 'package:madassignment/pages/uniquelist.dart';
-// import 'package:madassignment/pages/helloworld.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool _isDarkMode = false;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
-        primaryColor: const Color.fromARGB(255, 119, 82, 223),
-        disabledColor: Colors.grey[600],
-        hintColor: const Color.fromARGB(255, 42, 15, 117),
+      title: 'Settings Demo',
+      theme: _isDarkMode ? ThemeData.dark() : ThemeData.light(),
+      home: SettingsScreen(
+        isDarkMode: _isDarkMode,
+        onToggleDarkMode: (value) {
+          setState(() {
+            _isDarkMode = value;
+          });
+        },
       ),
-      home: CustomDrawerPage(),
+    );
+  }
+}
+
+class SettingsScreen extends StatelessWidget {
+  final bool isDarkMode;
+  final ValueChanged<bool> onToggleDarkMode;
+
+  const SettingsScreen({
+    super.key,
+    required this.isDarkMode,
+    required this.onToggleDarkMode,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Settings')),
+      body: ListView(
+        children: [
+          SwitchListTile(
+            title: const Text("Dark Mode"),
+            value: isDarkMode,
+            onChanged: onToggleDarkMode,
+            secondary: const Icon(Icons.dark_mode),
+          ),
+        ],
+      ),
     );
   }
 }
